@@ -1,0 +1,2402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://services.agroprombank.com/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://services.agroprombank.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.agroprombank.com/">
+      <s:element name="Login">
+        <s:complexType />
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QRMCredentials" type="tns:QRMCredentials" />
+      <s:complexType name="QRMCredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeviceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PushId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalToken" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="IsMainUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsMainUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsMainUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTerminals">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTerminalsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTerminalsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPayments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="qrterminals" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNotifications">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetNotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNotificationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubUnSubNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="phonedescr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="apushid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="action" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="targetdeviceid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubUnSubNotificationResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLogs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLogsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLogsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReversePayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qrterminal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="paymetid" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="rrn" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReversePaymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RefundPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qrterminal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="paymetid" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="rrn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundPaymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetCashBackRedefinition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="rrn" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastdgt" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cashbackamount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCashBackRedefinitionResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTransactionDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="rrn" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastdgt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionDetailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogError">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogErrorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreatePayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencycode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreatePaymentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentCredit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencycode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="creditproduct" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="creditterm" nillable="true" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentCreditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreatePaymentCreditResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencycode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="extid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreatePaymentIDResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencycode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fio" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreatePaymentExResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQRTerminalLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="qrterminal" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQRTerminalLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQRTerminalLogResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetQRTerminalInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="info" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetQRTerminalInfoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ClosePayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClosePaymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPaymentState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="qrpaymentid" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentStateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentStateExtId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="externalid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentStateExtIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentStateExtIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetQRTerminalFixAmount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalid" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fixamount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetQRTerminalFixAmountResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GenerateAppId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phonedesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="model" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateAppIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateAppIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMerchantClientObj">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMerchantClientObjResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMerchantClientObjResult">
+              <s:complexType>
+                <s:annotation>
+                  <s:appinfo>
+                    <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+                  </s:appinfo>
+                </s:annotation>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="merchantClientUserId" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Object" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="enable" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserObjectResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUserObjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="merchantClientUserId" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserObjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserObjectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ModifyClientmerchantUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="enabled" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowNotice" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowrev" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowhistory" type="s:decimal" />
+            <s:element minOccurs="1" maxOccurs="1" name="allowbatch" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="rightObjects" type="tns:ArrayOfRightObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRightObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RightObject" nillable="true" type="tns:RightObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RightObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ModifyClientmerchantUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ModifyClientmerchantUserResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientMerchantUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClientMerchantUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientMerchantUsersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAppVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAppVersionResult" type="tns:MpAppVersion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MpAppVersion">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Number" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Changes" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLastAppVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLastAppVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLastAppVersionResult" type="tns:MpAppVersion" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlRequest" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DoRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MPOSCredentials" type="tns:MPOSCredentials" />
+      <s:complexType name="MPOSCredentials">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DeviceType" type="tns:DeviceType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pin" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:simpleType name="DeviceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Android" />
+          <s:enumeration value="iOS" />
+          <s:enumeration value="Desktop" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetDefaultPosConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="posId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultPosConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDefaultPosConfigResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionPosConfig">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="posId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencyCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionPosConfigResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionPosConfigResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPosFirmware">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="posId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPosFirmwareResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPosFirmwareResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStan">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetStanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStanResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMPOSTerminals">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMPOSTerminalsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMPOSTerminalsResult" type="tns:ArrayOfTerminal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTerminal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Terminal" nillable="true" type="tns:Terminal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Terminal">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ClientName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TerminalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TraidingName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasCert" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currencies" type="tns:ArrayOfCurrency" />
+          <s:element minOccurs="0" maxOccurs="1" name="Products" type="tns:ArrayOfCreditProduct" />
+          <s:element minOccurs="0" maxOccurs="1" name="PosId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCurrency">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Currency" nillable="true" type="tns:Currency" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Currency">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Abbr" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCreditProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CreditProduct" nillable="true" type="tns:CreditProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditProduct">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProductId" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Terms" type="tns:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMPOSOperations">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateFrom" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateTo" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMPOSOperationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMPOSOperationsResult" type="tns:ArrayOfOperation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOperation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Operation" nillable="true" type="tns:Operation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Operation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:OperationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TraidingName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrxReferenceNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pan" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrxDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TerminalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:Currency" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsReversal" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrxId" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PosId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MerchantId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CredProduct" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CredTerm" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OperationType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Purchase" />
+          <s:enumeration value="Refund" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateCertificate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="csr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCertificateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateCertificateResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RevokeCertificates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="deviceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="deviceTypeId" type="tns:DeviceType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RevokeCertificatesResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCertificates">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCertificatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCertificatesResult" type="tns:ArrayOfCertificate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCertificate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Certificate" nillable="true" type="tns:Certificate" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Certificate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:DeviceType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TerminalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TraidingName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateCreated" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSalt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mposPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSaltResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSaltResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrecheckRefund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="posId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionId" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrecheckRefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PrecheckRefundResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrecheckTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="posId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrecheckTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PrecheckTransactionResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNfcPinLimit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencyCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNfcPinLimitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetNfcPinLimitResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="terminalId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rrn" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isReversal" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="tns:OperationType" />
+            <s:element minOccurs="1" maxOccurs="1" name="width" type="tns:CheckWidth" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="CheckWidth">
+        <s:restriction base="s:string">
+          <s:enumeration value="CheckLength57" />
+          <s:enumeration value="CheckLength76" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetTransactionCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionCheckResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="IsMainUserSoapIn">
+    <wsdl:part name="parameters" element="tns:IsMainUser" />
+  </wsdl:message>
+  <wsdl:message name="IsMainUserSoapOut">
+    <wsdl:part name="parameters" element="tns:IsMainUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsMainUserQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTerminalsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTerminals" />
+  </wsdl:message>
+  <wsdl:message name="GetTerminalsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTerminalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTerminalsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPayments" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNotifications" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNotificationsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="SubUnSubNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:SubUnSubNotification" />
+  </wsdl:message>
+  <wsdl:message name="SubUnSubNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:SubUnSubNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubUnSubNotificationQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetLogsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLogs" />
+  </wsdl:message>
+  <wsdl:message name="GetLogsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLogsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ReversePaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:ReversePayment" />
+  </wsdl:message>
+  <wsdl:message name="ReversePaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:ReversePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReversePaymentQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="RefundPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:RefundPayment" />
+  </wsdl:message>
+  <wsdl:message name="RefundPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundPaymentQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="SetCashBackRedefinitionSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCashBackRedefinition" />
+  </wsdl:message>
+  <wsdl:message name="SetCashBackRedefinitionSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCashBackRedefinitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCashBackRedefinitionQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:LogError" />
+  </wsdl:message>
+  <wsdl:message name="LogErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:LogErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogErrorQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePayment" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentCreditSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePaymentCredit" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentCreditSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaymentCreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentCreditQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentIDSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePaymentID" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentIDSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaymentIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentIDQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentExSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePaymentEx" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentExSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaymentExResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentExQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetStateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetState" />
+  </wsdl:message>
+  <wsdl:message name="GetStateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStateQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetQRTerminalLogSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQRTerminalLog" />
+  </wsdl:message>
+  <wsdl:message name="GetQRTerminalLogSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQRTerminalLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQRTerminalLogQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="SetQRTerminalInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:SetQRTerminalInfo" />
+  </wsdl:message>
+  <wsdl:message name="SetQRTerminalInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:SetQRTerminalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetQRTerminalInfoQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ClosePaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:ClosePayment" />
+  </wsdl:message>
+  <wsdl:message name="ClosePaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:ClosePaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClosePaymentQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentStateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentState" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentStateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentStateQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentStateExtIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentStateExtId" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentStateExtIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentStateExtIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetQRTerminalFixAmountSoapIn">
+    <wsdl:part name="parameters" element="tns:SetQRTerminalFixAmount" />
+  </wsdl:message>
+  <wsdl:message name="SetQRTerminalFixAmountSoapOut">
+    <wsdl:part name="parameters" element="tns:SetQRTerminalFixAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetQRTerminalFixAmountQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GenerateAppIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateAppId" />
+  </wsdl:message>
+  <wsdl:message name="GenerateAppIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateAppIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateAppIdQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMerchantClientObjSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMerchantClientObj" />
+  </wsdl:message>
+  <wsdl:message name="GetMerchantClientObjSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMerchantClientObjResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMerchantClientObjQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="SetUserObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserObject" />
+  </wsdl:message>
+  <wsdl:message name="SetUserObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserObjectQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetUserObjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserObjects" />
+  </wsdl:message>
+  <wsdl:message name="GetUserObjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserObjectsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ModifyClientmerchantUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ModifyClientmerchantUser" />
+  </wsdl:message>
+  <wsdl:message name="ModifyClientmerchantUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ModifyClientmerchantUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ModifyClientmerchantUserQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetClientMerchantUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientMerchantUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetClientMerchantUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientMerchantUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientMerchantUsersQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetAppVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAppVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetAppVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAppVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLastAppVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLastAppVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetLastAppVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLastAppVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:DoRequest" />
+  </wsdl:message>
+  <wsdl:message name="DoRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:DoRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoRequestMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="DoRequestQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultPosConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultPosConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultPosConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultPosConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultPosConfigMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultPosConfigQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionPosConfigSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionPosConfig" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionPosConfigSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionPosConfigResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionPosConfigMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionPosConfigQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetPosFirmwareSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPosFirmware" />
+  </wsdl:message>
+  <wsdl:message name="GetPosFirmwareSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPosFirmwareResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPosFirmwareMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetPosFirmwareQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetStanSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStan" />
+  </wsdl:message>
+  <wsdl:message name="GetStanSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStanResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStanMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetStanQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSTerminalsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMPOSTerminals" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSTerminalsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMPOSTerminalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSTerminalsMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSTerminalsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSOperationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMPOSOperations" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSOperationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMPOSOperationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSOperationsMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetMPOSOperationsQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateCertificateSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCertificate" />
+  </wsdl:message>
+  <wsdl:message name="CreateCertificateSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCertificateResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCertificateMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateCertificateQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="RevokeCertificatesSoapIn">
+    <wsdl:part name="parameters" element="tns:RevokeCertificates" />
+  </wsdl:message>
+  <wsdl:message name="RevokeCertificatesSoapOut">
+    <wsdl:part name="parameters" element="tns:RevokeCertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RevokeCertificatesMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="RevokeCertificatesQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCertificates" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCertificatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetCertificatesQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetSaltSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSalt" />
+  </wsdl:message>
+  <wsdl:message name="GetSaltSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSaltResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSaltMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetSaltQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckRefundSoapIn">
+    <wsdl:part name="parameters" element="tns:PrecheckRefund" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckRefundSoapOut">
+    <wsdl:part name="parameters" element="tns:PrecheckRefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckRefundMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckRefundQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:PrecheckTransaction" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:PrecheckTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckTransactionMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="PrecheckTransactionQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetNfcPinLimitSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNfcPinLimit" />
+  </wsdl:message>
+  <wsdl:message name="GetNfcPinLimitSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNfcPinLimitResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNfcPinLimitMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetNfcPinLimitQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionCheck" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionCheckMPOSCredentials">
+    <wsdl:part name="MPOSCredentials" element="tns:MPOSCredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionCheckQRMCredentials">
+    <wsdl:part name="QRMCredentials" element="tns:QRMCredentials" />
+  </wsdl:message>
+  <wsdl:portType name="QRMobileServiceSoap">
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsMainUser">
+      <wsdl:input message="tns:IsMainUserSoapIn" />
+      <wsdl:output message="tns:IsMainUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminals">
+      <wsdl:input message="tns:GetTerminalsSoapIn" />
+      <wsdl:output message="tns:GetTerminalsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayments">
+      <wsdl:input message="tns:GetPaymentsSoapIn" />
+      <wsdl:output message="tns:GetPaymentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotifications">
+      <wsdl:input message="tns:GetNotificationsSoapIn" />
+      <wsdl:output message="tns:GetNotificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SubUnSubNotification">
+      <wsdl:input message="tns:SubUnSubNotificationSoapIn" />
+      <wsdl:output message="tns:SubUnSubNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <wsdl:input message="tns:GetLogsSoapIn" />
+      <wsdl:output message="tns:GetLogsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReversePayment">
+      <wsdl:input message="tns:ReversePaymentSoapIn" />
+      <wsdl:output message="tns:ReversePaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundPayment">
+      <wsdl:input message="tns:RefundPaymentSoapIn" />
+      <wsdl:output message="tns:RefundPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCashBackRedefinition">
+      <wsdl:input message="tns:SetCashBackRedefinitionSoapIn" />
+      <wsdl:output message="tns:SetCashBackRedefinitionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionDetail">
+      <wsdl:input message="tns:GetTransactionDetailSoapIn" />
+      <wsdl:output message="tns:GetTransactionDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <wsdl:input message="tns:LogErrorSoapIn" />
+      <wsdl:output message="tns:LogErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePayment">
+      <wsdl:input message="tns:CreatePaymentSoapIn" />
+      <wsdl:output message="tns:CreatePaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentCredit">
+      <wsdl:input message="tns:CreatePaymentCreditSoapIn" />
+      <wsdl:output message="tns:CreatePaymentCreditSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentID">
+      <wsdl:input message="tns:CreatePaymentIDSoapIn" />
+      <wsdl:output message="tns:CreatePaymentIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentEx">
+      <wsdl:input message="tns:CreatePaymentExSoapIn" />
+      <wsdl:output message="tns:CreatePaymentExSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetState">
+      <wsdl:input message="tns:GetStateSoapIn" />
+      <wsdl:output message="tns:GetStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQRTerminalLog">
+      <wsdl:input message="tns:GetQRTerminalLogSoapIn" />
+      <wsdl:output message="tns:GetQRTerminalLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQRTerminalInfo">
+      <wsdl:input message="tns:SetQRTerminalInfoSoapIn" />
+      <wsdl:output message="tns:SetQRTerminalInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClosePayment">
+      <wsdl:input message="tns:ClosePaymentSoapIn" />
+      <wsdl:output message="tns:ClosePaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentState">
+      <wsdl:input message="tns:GetPaymentStateSoapIn" />
+      <wsdl:output message="tns:GetPaymentStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentStateExtId">
+      <wsdl:input message="tns:GetPaymentStateExtIdSoapIn" />
+      <wsdl:output message="tns:GetPaymentStateExtIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetQRTerminalFixAmount">
+      <wsdl:input message="tns:SetQRTerminalFixAmountSoapIn" />
+      <wsdl:output message="tns:SetQRTerminalFixAmountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateAppId">
+      <wsdl:input message="tns:GenerateAppIdSoapIn" />
+      <wsdl:output message="tns:GenerateAppIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMerchantClientObj">
+      <wsdl:input message="tns:GetMerchantClientObjSoapIn" />
+      <wsdl:output message="tns:GetMerchantClientObjSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserObject">
+      <wsdl:input message="tns:SetUserObjectSoapIn" />
+      <wsdl:output message="tns:SetUserObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserObjects">
+      <wsdl:input message="tns:GetUserObjectsSoapIn" />
+      <wsdl:output message="tns:GetUserObjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyClientmerchantUser">
+      <wsdl:input message="tns:ModifyClientmerchantUserSoapIn" />
+      <wsdl:output message="tns:ModifyClientmerchantUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientMerchantUsers">
+      <wsdl:input message="tns:GetClientMerchantUsersSoapIn" />
+      <wsdl:output message="tns:GetClientMerchantUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppVersion">
+      <wsdl:input message="tns:GetAppVersionSoapIn" />
+      <wsdl:output message="tns:GetAppVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastAppVersion">
+      <wsdl:input message="tns:GetLastAppVersionSoapIn" />
+      <wsdl:output message="tns:GetLastAppVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoRequest">
+      <wsdl:input message="tns:DoRequestSoapIn" />
+      <wsdl:output message="tns:DoRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultPosConfig">
+      <wsdl:input message="tns:GetDefaultPosConfigSoapIn" />
+      <wsdl:output message="tns:GetDefaultPosConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionPosConfig">
+      <wsdl:input message="tns:GetTransactionPosConfigSoapIn" />
+      <wsdl:output message="tns:GetTransactionPosConfigSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPosFirmware">
+      <wsdl:input message="tns:GetPosFirmwareSoapIn" />
+      <wsdl:output message="tns:GetPosFirmwareSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStan">
+      <wsdl:input message="tns:GetStanSoapIn" />
+      <wsdl:output message="tns:GetStanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMPOSTerminals">
+      <wsdl:input message="tns:GetMPOSTerminalsSoapIn" />
+      <wsdl:output message="tns:GetMPOSTerminalsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMPOSOperations">
+      <wsdl:input message="tns:GetMPOSOperationsSoapIn" />
+      <wsdl:output message="tns:GetMPOSOperationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCertificate">
+      <wsdl:input message="tns:CreateCertificateSoapIn" />
+      <wsdl:output message="tns:CreateCertificateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RevokeCertificates">
+      <wsdl:input message="tns:RevokeCertificatesSoapIn" />
+      <wsdl:output message="tns:RevokeCertificatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificates">
+      <wsdl:input message="tns:GetCertificatesSoapIn" />
+      <wsdl:output message="tns:GetCertificatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSalt">
+      <wsdl:input message="tns:GetSaltSoapIn" />
+      <wsdl:output message="tns:GetSaltSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrecheckRefund">
+      <wsdl:input message="tns:PrecheckRefundSoapIn" />
+      <wsdl:output message="tns:PrecheckRefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrecheckTransaction">
+      <wsdl:input message="tns:PrecheckTransactionSoapIn" />
+      <wsdl:output message="tns:PrecheckTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNfcPinLimit">
+      <wsdl:input message="tns:GetNfcPinLimitSoapIn" />
+      <wsdl:output message="tns:GetNfcPinLimitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionCheck">
+      <wsdl:input message="tns:GetTransactionCheckSoapIn" />
+      <wsdl:output message="tns:GetTransactionCheckSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="QRMobileServiceSoap" type="tns:QRMobileServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://services.agroprombank.com/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoginQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsMainUser">
+      <soap:operation soapAction="http://services.agroprombank.com/IsMainUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsMainUserQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminals">
+      <soap:operation soapAction="http://services.agroprombank.com/GetTerminals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTerminalsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayments">
+      <soap:operation soapAction="http://services.agroprombank.com/GetPayments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPaymentsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotifications">
+      <soap:operation soapAction="http://services.agroprombank.com/GetNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNotificationsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubUnSubNotification">
+      <soap:operation soapAction="http://services.agroprombank.com/SubUnSubNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SubUnSubNotificationQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <soap:operation soapAction="http://services.agroprombank.com/GetLogs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLogsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReversePayment">
+      <soap:operation soapAction="http://services.agroprombank.com/ReversePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ReversePaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundPayment">
+      <soap:operation soapAction="http://services.agroprombank.com/RefundPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RefundPaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCashBackRedefinition">
+      <soap:operation soapAction="http://services.agroprombank.com/SetCashBackRedefinition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetCashBackRedefinitionQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionDetail">
+      <soap:operation soapAction="http://services.agroprombank.com/GetTransactionDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <soap:operation soapAction="http://services.agroprombank.com/LogError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LogErrorQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePayment">
+      <soap:operation soapAction="http://services.agroprombank.com/CreatePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreatePaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentCredit">
+      <soap:operation soapAction="http://services.agroprombank.com/CreatePaymentCredit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreatePaymentCreditQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentID">
+      <soap:operation soapAction="http://services.agroprombank.com/CreatePaymentID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreatePaymentIDQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentEx">
+      <soap:operation soapAction="http://services.agroprombank.com/CreatePaymentEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreatePaymentExQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetState">
+      <soap:operation soapAction="http://services.agroprombank.com/GetState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetStateQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQRTerminalLog">
+      <soap:operation soapAction="http://services.agroprombank.com/GetQRTerminalLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetQRTerminalLogQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQRTerminalInfo">
+      <soap:operation soapAction="http://services.agroprombank.com/SetQRTerminalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetQRTerminalInfoQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClosePayment">
+      <soap:operation soapAction="http://services.agroprombank.com/ClosePayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ClosePaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentState">
+      <soap:operation soapAction="http://services.agroprombank.com/GetPaymentState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPaymentStateQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentStateExtId">
+      <soap:operation soapAction="http://services.agroprombank.com/GetPaymentStateExtId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQRTerminalFixAmount">
+      <soap:operation soapAction="http://services.agroprombank.com/SetQRTerminalFixAmount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetQRTerminalFixAmountQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateAppId">
+      <soap:operation soapAction="http://services.agroprombank.com/GenerateAppId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GenerateAppIdQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMerchantClientObj">
+      <soap:operation soapAction="http://services.agroprombank.com/GetMerchantClientObj" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMerchantClientObjQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserObject">
+      <soap:operation soapAction="http://services.agroprombank.com/SetUserObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetUserObjectQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserObjects">
+      <soap:operation soapAction="http://services.agroprombank.com/GetUserObjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUserObjectsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyClientmerchantUser">
+      <soap:operation soapAction="http://services.agroprombank.com/ModifyClientmerchantUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ModifyClientmerchantUserQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientMerchantUsers">
+      <soap:operation soapAction="http://services.agroprombank.com/GetClientMerchantUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetClientMerchantUsersQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppVersion">
+      <soap:operation soapAction="http://services.agroprombank.com/GetAppVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastAppVersion">
+      <soap:operation soapAction="http://services.agroprombank.com/GetLastAppVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoRequest">
+      <soap:operation soapAction="http://services.agroprombank.com/DoRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DoRequestMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:DoRequestQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultPosConfig">
+      <soap:operation soapAction="http://services.agroprombank.com/GetDefaultPosConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDefaultPosConfigMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetDefaultPosConfigQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionPosConfig">
+      <soap:operation soapAction="http://services.agroprombank.com/GetTransactionPosConfig" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTransactionPosConfigMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetTransactionPosConfigQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPosFirmware">
+      <soap:operation soapAction="http://services.agroprombank.com/GetPosFirmware" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPosFirmwareMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetPosFirmwareQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStan">
+      <soap:operation soapAction="http://services.agroprombank.com/GetStan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetStanMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetStanQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMPOSTerminals">
+      <soap:operation soapAction="http://services.agroprombank.com/GetMPOSTerminals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMPOSTerminalsMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetMPOSTerminalsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMPOSOperations">
+      <soap:operation soapAction="http://services.agroprombank.com/GetMPOSOperations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMPOSOperationsMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetMPOSOperationsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCertificate">
+      <soap:operation soapAction="http://services.agroprombank.com/CreateCertificate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateCertificateMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:CreateCertificateQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeCertificates">
+      <soap:operation soapAction="http://services.agroprombank.com/RevokeCertificates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RevokeCertificatesMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:RevokeCertificatesQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificates">
+      <soap:operation soapAction="http://services.agroprombank.com/GetCertificates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCertificatesMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetCertificatesQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalt">
+      <soap:operation soapAction="http://services.agroprombank.com/GetSalt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSaltMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetSaltQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrecheckRefund">
+      <soap:operation soapAction="http://services.agroprombank.com/PrecheckRefund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PrecheckRefundMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:PrecheckRefundQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrecheckTransaction">
+      <soap:operation soapAction="http://services.agroprombank.com/PrecheckTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PrecheckTransactionMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:PrecheckTransactionQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNfcPinLimit">
+      <soap:operation soapAction="http://services.agroprombank.com/GetNfcPinLimit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetNfcPinLimitMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetNfcPinLimitQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionCheck">
+      <soap:operation soapAction="http://services.agroprombank.com/GetTransactionCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTransactionCheckMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap:header message="tns:GetTransactionCheckQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="QRMobileServiceSoap12" type="tns:QRMobileServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://services.agroprombank.com/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoginQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsMainUser">
+      <soap12:operation soapAction="http://services.agroprombank.com/IsMainUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsMainUserQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTerminals">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetTerminals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTerminalsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayments">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetPayments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPaymentsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNotifications">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNotificationsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubUnSubNotification">
+      <soap12:operation soapAction="http://services.agroprombank.com/SubUnSubNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SubUnSubNotificationQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogs">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetLogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLogsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReversePayment">
+      <soap12:operation soapAction="http://services.agroprombank.com/ReversePayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ReversePaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundPayment">
+      <soap12:operation soapAction="http://services.agroprombank.com/RefundPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RefundPaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCashBackRedefinition">
+      <soap12:operation soapAction="http://services.agroprombank.com/SetCashBackRedefinition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetCashBackRedefinitionQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionDetail">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetTransactionDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <soap12:operation soapAction="http://services.agroprombank.com/LogError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LogErrorQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePayment">
+      <soap12:operation soapAction="http://services.agroprombank.com/CreatePayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreatePaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentCredit">
+      <soap12:operation soapAction="http://services.agroprombank.com/CreatePaymentCredit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreatePaymentCreditQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentID">
+      <soap12:operation soapAction="http://services.agroprombank.com/CreatePaymentID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreatePaymentIDQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentEx">
+      <soap12:operation soapAction="http://services.agroprombank.com/CreatePaymentEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreatePaymentExQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetState">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetStateQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQRTerminalLog">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetQRTerminalLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetQRTerminalLogQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQRTerminalInfo">
+      <soap12:operation soapAction="http://services.agroprombank.com/SetQRTerminalInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetQRTerminalInfoQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClosePayment">
+      <soap12:operation soapAction="http://services.agroprombank.com/ClosePayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ClosePaymentQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentState">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetPaymentState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPaymentStateQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentStateExtId">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetPaymentStateExtId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetQRTerminalFixAmount">
+      <soap12:operation soapAction="http://services.agroprombank.com/SetQRTerminalFixAmount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetQRTerminalFixAmountQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateAppId">
+      <soap12:operation soapAction="http://services.agroprombank.com/GenerateAppId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GenerateAppIdQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMerchantClientObj">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetMerchantClientObj" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMerchantClientObjQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserObject">
+      <soap12:operation soapAction="http://services.agroprombank.com/SetUserObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetUserObjectQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserObjects">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetUserObjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUserObjectsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyClientmerchantUser">
+      <soap12:operation soapAction="http://services.agroprombank.com/ModifyClientmerchantUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ModifyClientmerchantUserQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientMerchantUsers">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetClientMerchantUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetClientMerchantUsersQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppVersion">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetAppVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastAppVersion">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetLastAppVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoRequest">
+      <soap12:operation soapAction="http://services.agroprombank.com/DoRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DoRequestMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:DoRequestQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultPosConfig">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetDefaultPosConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDefaultPosConfigMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetDefaultPosConfigQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionPosConfig">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetTransactionPosConfig" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTransactionPosConfigMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetTransactionPosConfigQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPosFirmware">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetPosFirmware" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPosFirmwareMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetPosFirmwareQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStan">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetStan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetStanMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetStanQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMPOSTerminals">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetMPOSTerminals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMPOSTerminalsMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetMPOSTerminalsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMPOSOperations">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetMPOSOperations" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMPOSOperationsMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetMPOSOperationsQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCertificate">
+      <soap12:operation soapAction="http://services.agroprombank.com/CreateCertificate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateCertificateMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:CreateCertificateQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RevokeCertificates">
+      <soap12:operation soapAction="http://services.agroprombank.com/RevokeCertificates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RevokeCertificatesMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:RevokeCertificatesQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCertificates">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetCertificates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCertificatesMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetCertificatesQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSalt">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetSalt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSaltMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetSaltQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrecheckRefund">
+      <soap12:operation soapAction="http://services.agroprombank.com/PrecheckRefund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PrecheckRefundMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:PrecheckRefundQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrecheckTransaction">
+      <soap12:operation soapAction="http://services.agroprombank.com/PrecheckTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PrecheckTransactionMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:PrecheckTransactionQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNfcPinLimit">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetNfcPinLimit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetNfcPinLimitMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetNfcPinLimitQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionCheck">
+      <soap12:operation soapAction="http://services.agroprombank.com/GetTransactionCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTransactionCheckMPOSCredentials" part="MPOSCredentials" use="literal" />
+        <soap12:header message="tns:GetTransactionCheckQRMCredentials" part="QRMCredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="QRMobileService">
+    <wsdl:port name="QRMobileServiceSoap" binding="tns:QRMobileServiceSoap">
+      <soap:address location="http://cluster-sv2.services.agroprombank.com/APB.Cards/QRMobileService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="QRMobileServiceSoap12" binding="tns:QRMobileServiceSoap12">
+      <soap12:address location="http://cluster-sv2.services.agroprombank.com/APB.Cards/QRMobileService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
